@@ -7,16 +7,22 @@ import org.example.util.EncryptDecryptUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    public static final String LOGIN = "admin";
-    public static final String PASSWORD = "123";
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher rd = req.getRequestDispatcher("LoginForm.html");
+        rd.forward(req, resp);
+
+    }
 
     private static UsersDAO dao = new UserDAOImpl();
 
@@ -42,7 +48,7 @@ public class LoginServlet extends HttpServlet {
         } else {
 
             HttpSession session = req.getSession();
-           // session.setMaxInactiveInterval(5);
+            // session.setMaxInactiveInterval(5);
             System.out.println("session id is " + session.getId());
             session.setAttribute("user", user);
 
@@ -51,11 +57,5 @@ public class LoginServlet extends HttpServlet {
             disp.forward(req, resp);
         }
 
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher disp = req.getRequestDispatcher("LoginForm.html");
-        disp.forward(req, resp);
     }
 }

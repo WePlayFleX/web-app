@@ -93,7 +93,7 @@ public class UserDAOImpl implements UsersDAO {
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(select);
-            while (rs.next()){
+            if (rs.next()){
                 user = new User();
                 user.setId(rs.getInt(1));
                 user.setEmail(rs.getString("email"));

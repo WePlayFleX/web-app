@@ -8,11 +8,20 @@ import java.util.Properties;
 
 public class MailUtils {
 
+    private static Properties g_prop = new Properties();
+
+    static {
+        g_prop.put("mail.smtp.host", "smtp.gmail.com");
+        g_prop.put("mail.smtp.port", "587");
+        g_prop.put("mail.smtp.auth", "true");
+        g_prop.put("mail.smtp.starttls.enable", "true"); //TLS
+    }
+
     private static Properties prop = new Properties();
 
     static {
-        prop.put("mail.smtp.host", "smtp.gmail.com");
-        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.host", "smtp.rambler.ru");
+        prop.put("mail.smtp.port", "2525");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true"); //TLS
     }
@@ -22,7 +31,7 @@ public class MailUtils {
         return Session.getInstance(prop,
                 new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(AppConstants.EMAIL_ACC, AppConstants.EMAIL_APP_CODE);
+                        return new PasswordAuthentication(AppConstants.EMAIL_ACC, AppConstants.EMAIL_PWD);
                     }
                 });
     }
@@ -97,5 +106,11 @@ public class MailUtils {
         return result;
     }
 
+
+    public static void main(String[] args) {
+
+        send("Sharlan@outlook.com", "TEST", "TEST");
+
+    }
 
 }

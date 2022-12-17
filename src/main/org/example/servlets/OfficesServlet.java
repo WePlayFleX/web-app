@@ -83,7 +83,7 @@ public class OfficesServlet  extends HttpServlet {
                 boolean isCreated = dao.create(newO);
                 req.setAttribute("msg",  "Office with locatiomn " + newLocation + " was" + (isCreated? "": "NOT")+" created.");
                 rd.forward(req, resp);
-                return;
+            return;
         }
 
     }

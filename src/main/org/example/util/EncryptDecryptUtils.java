@@ -82,6 +82,8 @@ public class EncryptDecryptUtils {
     }
 
     public static void main(String[] args) {
-        System.out.println(encrypt("Bob"));
+
+        System.out.println(encrypt("431241"));
+
     }
 }

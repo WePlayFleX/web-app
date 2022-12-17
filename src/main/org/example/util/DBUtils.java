@@ -1,12 +1,10 @@
 package org.example.util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBUtils {
 
-    public static final String DB_URL = "jdbc:mysql://localhost:3308/crazy_app_db";
+    public static final String DB_URL = "jdbc:mysql://localhost:3306/crazy_app_db";
     public static final String DB_USER = "root";
     public static final String DB_USER_PWD = "";
 
@@ -44,4 +42,36 @@ public class DBUtils {
         }
     }
 
+    public static void main(String[] args) {
+        Connection conn = getConnection();
+        closeConnection(conn);
+    }
+
+
+    static void test(int id){
+        Connection conn = getConnection();
+        String sql = "SELECT * FROM offices WHERE id = " + id;
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            if(rs.next()){
+
+                String location = rs.getString("location");
+                String ph1 = rs.getString("phone1");
+                String ph2 = rs.getString(4);
+
+                System.out.println(id);
+                System.out.println(location);
+                System.out.println(ph1);
+                System.out.println(ph2);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection(conn);
+        }
+    }
+
 }
+

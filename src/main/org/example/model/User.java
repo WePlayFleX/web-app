@@ -17,6 +17,7 @@ public class User {
     private String pwd;
     private String name;
     private String details;
+
     private boolean isActive;
 
     private Office office;

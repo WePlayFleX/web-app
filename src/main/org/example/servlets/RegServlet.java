@@ -35,7 +35,7 @@ public class RegServlet extends HttpServlet {
         if (pwd.equals(confirmPwd)) {
             User user = new User(email, pwd, name, details);
             dao.createUser(user);
-            String content = IOUtils.readFileBuff("C:\\Users\\Sharlan_A\\IdeaProjects\\web-app\\src\\main\\webapp\\templates\\ActivationTemplate.html");
+            String content = IOUtils.readFileBuff("C:\\Users\\Sharlan_A\\IdeaProjects\\webapp\\src\\main\\webapp\\templates\\ActivationTemplate.html");
             content = content.replace("<&>", EncryptDecryptUtils.encrypt(email));
 
             final String finalContent = content;
